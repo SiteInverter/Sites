@@ -1,0 +1,527 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Grey Archive</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #111214;
+  color: #e5e5e5;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  background: #191a1d;
+  border-bottom: 1px solid #333;
+  padding: 22px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 19px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.logo span {
+  color: #858585;
+}
+
+.status {
+  font-size: 10px;
+  color: #999;
+  letter-spacing: 2px;
+}
+
+.hero {
+  text-align: center;
+  padding: 65px 20px 40px;
+}
+
+.hero h1 {
+  font-size: clamp(30px, 6vw, 55px);
+  letter-spacing: 4px;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  color: #888;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.search-area {
+  max-width: 750px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+.search-box {
+  display: flex;
+  background: #222428;
+  border: 1px solid #444;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.search-box input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 17px;
+  color: white;
+  font-size: 15px;
+}
+
+.search-box button {
+  background: #55585e;
+  color: white;
+  border: none;
+  padding: 0 23px;
+  cursor: pointer;
+}
+
+.search-box button:hover {
+  background: #73767d;
+}
+
+.categories {
+  display: flex;
+  gap: 9px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 22px;
+}
+
+.categories button {
+  background: #202226;
+  border: 1px solid #393b40;
+  color: #aaa;
+  padding: 9px 13px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.categories button:hover {
+  background: #414348;
+  color: white;
+}
+
+main {
+  max-width: 1000px;
+  margin: 25px auto;
+  padding: 0 20px;
+}
+
+.section-title {
+  font-size: 13px;
+  color: #aaa;
+  letter-spacing: 2px;
+  border-bottom: 1px solid #333;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+#results {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+.card {
+  background: #1b1d20;
+  border: 1px solid #34363a;
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+.card img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  background: #292b2e;
+}
+
+.card-content {
+  padding: 18px;
+}
+
+.card h3 {
+  font-size: 17px;
+  margin-bottom: 12px;
+}
+
+.card p {
+  font-size: 13px;
+  line-height: 1.7;
+  color: #aaa;
+}
+
+.card a {
+  display: inline-block;
+  color: #ddd;
+  margin-top: 16px;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.card a:hover {
+  text-decoration: underline;
+}
+
+#message {
+  text-align: center;
+  color: #888;
+  padding: 35px 10px;
+  font-size: 13px;
+}
+
+#detail {
+  display: none;
+  background: #1b1d20;
+  border: 1px solid #393b40;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  padding: 22px;
+}
+
+#detail h2 {
+  font-size: 25px;
+  margin-bottom: 15px;
+}
+
+#detail p {
+  color: #bbb;
+  line-height: 1.9;
+  font-size: 14px;
+}
+
+#detail img {
+  max-width: 100%;
+  max-height: 350px;
+  object-fit: contain;
+  display: block;
+  margin: 20px auto;
+  border-radius: 5px;
+}
+
+.back {
+  border: 1px solid #555;
+  background: transparent;
+  color: #ddd;
+  padding: 9px 14px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.notice {
+  background: #222428;
+  border-left: 3px solid #777;
+  padding: 14px;
+  color: #999;
+  font-size: 11px;
+  line-height: 1.7;
+  margin: 25px 0;
+}
+
+footer {
+  border-top: 1px solid #333;
+  margin-top: 70px;
+  padding: 30px 15px;
+  text-align: center;
+  color: #666;
+  font-size: 11px;
+  line-height: 2;
+}
+
+@media(max-width:500px) {
+  header { padding: 18px; }
+  .status { font-size: 8px; }
+  .hero { padding-top: 45px; }
+  .search-box button { padding: 0 14px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">THE <span>GREY</span> ARCHIVE</div>
+  <div class="status">RESEARCH DATABASE / 001</div>
+</header>
+
+<section class="hero">
+  <h1>THE DARK SIDE.</h1>
+  <p>
+    An archive of humanity's darkest chapters.<br>
+    History, tragedies, mysteries and internet folklore.
+  </p>
+
+  <div class="search-area">
+    <div class="search-box">
+      <input id="searchInput"
+        placeholder="Search anything... e.g. World War II"
+        onkeydown="if(event.key==='Enter') searchArchive()">
+
+      <button onclick="searchArchive()">SEARCH</button>
+    </div>
+
+    <div class="categories">
+      <button onclick="searchFor('World War I')">WORLD WAR I</button>
+      <button onclick="searchFor('World War II')">WORLD WAR II</button>
+      <button onclick="searchFor('Historical massacres')">MASSACRES</button>
+      <button onclick="searchFor('Unsolved mysteries')">MYSTERIES</button>
+      <button onclick="searchFor('Creepypasta')">CREEPYPASTA</button>
+      <button onclick="searchFor('Smile Dog')">SMILE DOG</button>
+    </div>
+  </div>
+</section>
+
+<main>
+
+  <div class="notice">
+    CONTENT NOTICE: This archive discusses historical violence,
+    human tragedies and disturbing fictional stories.
+    Information is presented for educational and research purposes.
+    Graphic imagery and explicit descriptions are not displayed.
+  </div>
+
+  <div id="detail"></div>
+
+  <div class="section-title" id="heading">
+    SEARCH THE ARCHIVE
+  </div>
+
+  <div id="results"></div>
+  <div id="message">
+    Enter a subject to begin your investigation.
+  </div>
+
+</main>
+
+<footer>
+  THE GREY ARCHIVE<br>
+  HISTORY · DOCUMENTATION · RESEARCH · INTERNET FOLKLORE<br>
+  Historical information and fictional stories are distinguished.
+</footer>
+
+<script>
+
+const input = document.getElementById("searchInput");
+const results = document.getElementById("results");
+const message = document.getElementById("message");
+const detail = document.getElementById("detail");
+const heading = document.getElementById("heading");
+
+function searchFor(term) {
+  input.value = term;
+  searchArchive();
+}
+
+function showMessage(text) {
+  message.textContent = text;
+  message.style.display = "block";
+}
+
+async function searchArchive() {
+
+  const term = input.value.trim();
+
+  if (!term) return;
+
+  results.innerHTML = "";
+  detail.style.display = "none";
+  heading.textContent = "SEARCH RESULTS: " + term.toUpperCase();
+  showMessage("Searching the archive...");
+
+  try {
+
+    // Search Wikipedia's public encyclopedia API.
+    const url =
+      "https://en.wikipedia.org/w/api.php?" +
+      new URLSearchParams({
+        action: "query",
+        generator: "search",
+        gsrsearch: term,
+        gsrnamespace: "0",
+        gsrlimit: "12",
+        prop: "extracts|pageimages|info",
+        exintro: "1",
+        explaintext: "1",
+        exchars: "850",
+        piprop: "thumbnail",
+        pithumbsize: "600",
+        inprop: "url",
+        format: "json",
+        origin: "*"
+      });
+
+    const response = await fetch(url);
+    if (!response.ok) throw new Error("Search unavailable");
+
+    const data = await response.json();
+
+    const pages = Object.values(
+      data.query?.pages || {}
+    );
+
+    if (!pages.length) {
+      showMessage("No encyclopedia results found. Try a different search or use the external research link below.");
+      addExternalSearch(term);
+      return;
+    }
+
+    message.style.display = "none";
+
+    pages.sort((a,b) => a.index - b.index);
+
+    pages.forEach(page => {
+
+      const card = document.createElement("article");
+      card.className = "card";
+
+      const img = document.createElement("img");
+      img.alt = page.title;
+      img.loading = "lazy";
+
+      if (page.thumbnail?.source) {
+        img.src = page.thumbnail.source;
+      } else {
+        img.style.display = "none";
+      }
+
+      const content = document.createElement("div");
+      content.className = "card-content";
+
+      const title = document.createElement("h3");
+      title.textContent = page.title;
+
+      const description = document.createElement("p");
+      description.textContent =
+        page.extract || "No short description available.";
+
+      const link = document.createElement("a");
+      link.href = page.fullurl;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.textContent = "READ FULL ARTICLE →";
+
+      const more = document.createElement("a");
+      more.href = "#";
+      more.textContent = "VIEW ARCHIVE ENTRY →";
+      more.style.marginLeft = "15px";
+
+      more.onclick = e => {
+        e.preventDefault();
+        showDetails(page);
+      };
+
+      content.append(title, description, link, document.createElement("br"), more);
+      card.append(img, content);
+      results.appendChild(card);
+
+    });
+
+    addExternalSearch(term);
+
+  } catch(error) {
+    showMessage("Unable to connect. Check your internet connection and try again.");
+    addExternalSearch(term);
+  }
+}
+
+function showDetails(page) {
+
+  detail.innerHTML = "";
+  detail.style.display = "block";
+
+  const back = document.createElement("button");
+  back.className = "back";
+  back.textContent = "← BACK TO RESULTS";
+  back.onclick = () => {
+    detail.style.display = "none";
+  };
+
+  const title = document.createElement("h2");
+  title.textContent = page.title;
+
+  const image = document.createElement("img");
+  image.alt = page.title;
+
+  if (page.thumbnail?.source) {
+    image.src = page.thumbnail.source;
+  } else {
+    image.style.display = "none";
+  }
+
+  const description = document.createElement("p");
+  description.textContent =
+    page.extract || "No summary available.";
+
+  const source = document.createElement("p");
+  source.style.marginTop = "20px";
+  source.style.fontSize = "12px";
+
+  const a = document.createElement("a");
+  a.href = page.fullurl;
+  a.target = "_blank";
+  a.rel = "noopener noreferrer";
+  a.style.color = "#ddd";
+  a.textContent = "SOURCE: WIKIPEDIA →";
+
+  source.appendChild(a);
+
+  detail.append(back, title, image, description, source);
+
+  detail.scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function addExternalSearch(term) {
+
+  const box = document.createElement("div");
+  box.style.marginTop = "25px";
+  box.style.padding = "15px";
+  box.style.background = "#202226";
+  box.style.border = "1px solid #393b40";
+  box.style.borderRadius = "6px";
+
+  const text = document.createElement("p");
+  text.style.color = "#aaa";
+  text.style.fontSize = "12px";
+  text.textContent =
+    "Looking for more information? Explore additional search sources:";
+
+  const link = document.createElement("a");
+  link.href =
+    "https://www.google.com/search?q=" +
+    encodeURIComponent(term + " history information");
+
+  link.target = "_blank";
+  link.rel = "noopener noreferrer";
+  link.textContent = "SEARCH THE WEB →";
+  link.style.color = "#ddd";
+  link.style.display = "inline-block";
+  link.style.marginTop = "12px";
+
+  box.append(text, link);
+  results.appendChild(box);
+}
+
+</script>
+
+</body>
+</html>
